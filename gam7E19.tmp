@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfgc3f5ca8mte"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_l5wde"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_l5wde")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.133333, 0.0470588, 0.0627451, 1)
+polygon = PackedVector2Array(-288, -163, -289, 161, 287, 161, 287, -165)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
