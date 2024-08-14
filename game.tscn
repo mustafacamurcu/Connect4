@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfgc3f5ca8mte"]
+[gd_scene load_steps=4 format=3 uid="uid://bfgc3f5ca8mte"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_l5wde"]
 [ext_resource type="Script" path="res://camera.gd" id="2_m8lag"]
+[ext_resource type="Script" path="res://RestartButton.gd" id="3_wb2t0"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l5wde")
@@ -19,8 +20,10 @@ script = ExtResource("2_m8lag")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameEndMenu" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 4020.0
-offset_bottom = 2153.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = 1910.0
+offset_bottom = 1082.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameEndMenu"]
@@ -44,8 +47,9 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Button" type="Button" parent="CanvasLayer/GameEndMenu/MarginContainer2"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameEndMenu/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "Restart
 "
+script = ExtResource("3_wb2t0")

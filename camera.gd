@@ -6,6 +6,7 @@ func _ready():
 	SignalBus.grid_updated.connect(_on_grid_updated)
 
 func _on_grid_updated(hex_container):
+	print_debug(hex_container.get_children().size())
 	var min_x = INF
 	var min_y = INF
 	var max_x = -INF
@@ -23,16 +24,20 @@ func _on_grid_updated(hex_container):
 			if y > max_y:
 				max_y = y
 	
-	var min_width = Constants.HEXAGON_WIDTH*5
-	var min_height = Constants.HEXAGON_HEIGHT*5
+	var min_width = Constants.HEXAGON_WIDTH * 5
+	var min_height = Constants.HEXAGON_HEIGHT * 5
 	
-	var width = max_x - min_x + Constants.HEXAGON_WIDTH*2
-	var height = max_y - min_y + Constants.HEXAGON_HEIGHT*2
+	# how far from the center is the furthest edge of the map
+	var max_horizontal = max(abs(max_x), abs(min_x)) + Constants.HEXAGON_WIDTH
+	var max_vertical = max(abs(max_y), abs(min_y)) + Constants.HEXAGON_HEIGHT
+
+	var width = max_horizontal * 2
+	var height = max_vertical * 2
 	
 	width = max(min_width, width)
 	height = max(min_height, height)
 	
-	var size : Vector2 = get_viewport().size
-	zoom.x = 1/min(width/size.x, height/size.y) * 0.5
-	zoom.y = 1/min(width/size.x, height/size.y) * 0.5
-	position = Vector2((min_x+max_x)/2, (min_y+max_y)/2)
+	var size: Vector2 = get_viewport().size
+	zoom.x = 1 / max(width / size.x, height / size.y)
+	zoom.y = 1 / max(width / size.x, height / size.y)
+	# position = Vector2((min_x + max_x) / 2, (min_y + max_y) / 2)

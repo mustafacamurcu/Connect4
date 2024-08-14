@@ -1,15 +1,14 @@
 class_name Hexagon
 extends Area2D
 @onready var collision_polygon_2d = $CollisionPolygon2D
-@onready var polygon_2d : Polygon2D = $Polygon2D
-@onready var hover : Polygon2D = $Hover
-@onready var debug_label = $DebugLabel
+@onready var polygon_2d: Polygon2D = $Polygon2D
+@onready var hover: Polygon2D = $Hover
 
 var ratio = 0.90
 var mouse_in = false
 var pressed = false
 var type: Constants.Type
-var coord : Coord:
+var coord: Coord:
 	set(c):
 		coord = c
 		position = c.to_position()
@@ -17,9 +16,6 @@ var coord : Coord:
 func neighbors():
 	return coord.neighbors()
 
-func show_debug():
-	debug_label.show()
-	debug_label.text = "(" + coord.q + ", " + coord.r + ")"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

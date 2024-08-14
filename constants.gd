@@ -26,3 +26,16 @@ static var colors = {
 	Type.Available: WHITE,
 	Type.Unavailable: GRAY,
 }
+
+
+func create_hexagon(edge_size) -> Polygon2D:
+	var hex = Polygon2D.new()
+	hex.polygon = PackedVector2Array([
+		Vector2(0, -edge_size),
+		Vector2(sqrt(3)/2*edge_size, -edge_size/2),
+		Vector2(sqrt(3)/2*edge_size, edge_size/2),
+		Vector2(0, edge_size),
+		Vector2(-sqrt(3)/2*edge_size, edge_size/2),
+		Vector2(-sqrt(3)/2*edge_size, -edge_size/2),
+	])
+	return hex

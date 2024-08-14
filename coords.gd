@@ -12,7 +12,7 @@ func _init(qq,rr):
 	r = rr
 
 func _to_string():
-	return '(' + str(r) + ', ' + str(q) + ')'
+	return '(' + str(q) + ', ' + str(r) + ')'
 
 func add(other: Coord):
 	return Coord.new(q+other.q, r+other.r)

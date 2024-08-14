@@ -1,20 +1,18 @@
 extends Node2D
 
-const OPENING = preload("res://opening.tscn")
+const MENU = preload("res://menu_screen.tscn")
 const GAME = preload("res://game.tscn")
 @onready var audio_stream_player = $AudioStreamPlayer
 
-var opening
+var menu
 var game
-
-var first_time = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	opening = OPENING.instantiate()
-	add_child(opening)
+	menu = MENU.instantiate()
+	add_child(menu)
 
-	SignalBus.start_pressed.connect(_on_start_pressed)
+	SignalBus.local_multiplayer_pressed.connect(_on_local_multiplayer_pressed)
 	SignalBus.quit_pressed.connect(_on_quit_pressed)
 	SignalBus.options_pressed.connect(_on_options_pressed)
 	SignalBus.escape_pressed.connect(_on_escape_pressed)
@@ -24,16 +22,13 @@ func _ready():
 func _on_bgm_toggled(on):
 	audio_stream_player.stream_paused = not on
 
-func _on_start_pressed():
-	opening.hide()
+func _on_local_multiplayer_pressed():
+	menu.hide()
 	if is_instance_valid(game):
 		game.queue_free()
 	game = GAME.instantiate()
 	add_child(game)
-	if not first_time:
-		game.disable_tutorial()
-	else:
-		first_time = false
+
 func _on_quit_pressed():
 	get_tree().quit()
 
@@ -42,5 +37,4 @@ func _on_options_pressed():
 
 func _on_escape_pressed():
 	game.queue_free()
-	opening.show()
-	
+	menu.show()
