@@ -13,6 +13,8 @@ func _ready():
 	add_child(menu)
 
 	SignalBus.local_multiplayer_pressed.connect(_on_local_multiplayer_pressed)
+	SignalBus.host_online_multiplayer_pressed.connect(_on_host_online_multiplayer_pressed)
+	SignalBus.load_game.connect(_on_load_game)
 	SignalBus.quit_pressed.connect(_on_quit_pressed)
 	SignalBus.options_pressed.connect(_on_options_pressed)
 	SignalBus.escape_pressed.connect(_on_escape_pressed)
@@ -23,6 +25,16 @@ func _on_bgm_toggled(on):
 	audio_stream_player.stream_paused = not on
 
 func _on_local_multiplayer_pressed():
+	menu.hide()
+	if is_instance_valid(game):
+		game.queue_free()
+	game = GAME.instantiate()
+	add_child(game)
+
+func _on_host_online_multiplayer_pressed():
+	Connect.join_server()
+
+func _on_load_game():
 	menu.hide()
 	if is_instance_valid(game):
 		game.queue_free()

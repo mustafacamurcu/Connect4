@@ -6,7 +6,6 @@ func _ready():
 	SignalBus.grid_updated.connect(_on_grid_updated)
 
 func _on_grid_updated(hex_container):
-	print_debug(hex_container.get_children().size())
 	var min_x = INF
 	var min_y = INF
 	var max_x = -INF

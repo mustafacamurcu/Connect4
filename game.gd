@@ -7,12 +7,15 @@ const HEXAGON = preload("res://hexagon.tscn")
 @onready var hex_container = $HexContainer
 @onready var game_end_menu = $CanvasLayer/GameEndMenu
 @onready var wins = $CanvasLayer/GameEndMenu/MarginContainer/Wins
+@onready var lobby_code_label = $CanvasLayer/LobbyCode
 
 var players: Array[Player] = []
 var active_player_index: int = 0
 var hexes: Dictionary = {}
 
 var showing_label = false
+
+var lobby_code
 
 var GRID_WIDTH = 15
 var GRID_HEIGHT = 10
@@ -26,11 +29,16 @@ func _ready():
 	players.append(p1)
 	players.append(p2)
 	
-	SignalBus.clicked_on.connect(_on_clicked_on)
+	SignalBus.clicked_on_accepted.connect(_on_clicked_on)
 	SignalBus.hovered_in.connect(_on_hovered_in)
 	SignalBus.hovered_out.connect(_on_hovered_out)
 
 	SignalBus.restart_pressed.connect(restart)
+
+func generate_lobby_code():
+	lobby_code = randi_range(1000, 9999)
+	lobby_code_label.text = "lobby code: " + str(lobby_code)
+	return lobby_code
 
 func _unhandled_key_input(event):
 	if event.is_action('escape'):
@@ -86,7 +94,8 @@ func explore_hex(coord: Coord):
 	SignalBus.grid_updated.emit(hex_container)
 
 
-func _on_clicked_on(hex: Hexagon):
+func _on_clicked_on(hexStr: String):
+	var hex = hexes[hexStr]
 	if (hex.type == Constants.Type.Available):
 		play_hex(hex)
 		advance_player()

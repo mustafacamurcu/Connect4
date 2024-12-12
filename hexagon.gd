@@ -41,7 +41,7 @@ func _unhandled_input(event):
 				pressed = true
 		else:
 			if mouse_in and pressed:
-				SignalBus.clicked_on.emit(self)
+				SignalBus.clicked_on.emit(str(coord))
 			pressed = false
 
 func set_type(t: Constants.Type):

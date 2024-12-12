@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3v78co1qtdo1"]
+[gd_scene load_steps=5 format=3 uid="uid://b3v78co1qtdo1"]
 
 [ext_resource type="PackedScene" uid="uid://1splx5d1r2s2" path="res://hex_button.tscn" id="1_b5e1w"]
 [ext_resource type="Script" path="res://menu_background.gd" id="1_n54ve"]
 [ext_resource type="Script" path="res://local_multiplayer_button.gd" id="3_8sose"]
+[ext_resource type="Script" path="res://host_online_multiplayer_button.gd" id="4_fv26w"]
 
 [node name="MenuScreen" type="Node2D"]
 
@@ -18,7 +19,7 @@ script = ExtResource("1_n54ve")
 [node name="HexButton" parent="." instance=ExtResource("1_b5e1w")]
 visible = false
 
-[node name="Button" type="Button" parent="."]
+[node name="vsAI" type="Button" parent="."]
 offset_left = 488.0
 offset_top = 59.0
 offset_right = 1109.0
@@ -26,7 +27,7 @@ offset_bottom = 204.0
 theme_override_font_sizes/font_size = 100
 text = "vs AI"
 
-[node name="Button2" type="Button" parent="."]
+[node name="LocalMultiplayer" type="Button" parent="."]
 offset_left = 413.0
 offset_top = 295.0
 offset_right = 1251.0
@@ -35,15 +36,16 @@ theme_override_font_sizes/font_size = 100
 text = "Local Multiplayer"
 script = ExtResource("3_8sose")
 
-[node name="Button3" type="Button" parent="."]
+[node name="HostOnlineMultiplayer" type="Button" parent="."]
 offset_left = 348.0
 offset_top = 506.0
 offset_right = 1504.0
 offset_bottom = 651.0
 theme_override_font_sizes/font_size = 100
 text = "Host Online Multiplayer"
+script = ExtResource("4_fv26w")
 
-[node name="Button4" type="Button" parent="."]
+[node name="JoinOnlineMultiplayer" type="Button" parent="."]
 offset_left = 322.0
 offset_top = 681.0
 offset_right = 1436.0
