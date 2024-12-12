@@ -20,6 +20,10 @@ Constants="*res://constants.gd"
 SignalBus="*res://signal_bus.gd"
 Connect="*res://connect.gd"
 
+[debug]
+
+file_logging/enable_file_logging=true
+
 [display]
 
 window/size/viewport_width=1920

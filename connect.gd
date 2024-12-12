@@ -1,6 +1,6 @@
 extends Node
 
-const SERVER_URL = "ws://localhost:8080";
+const SERVER_URL = "wss://connect4-956952065457.us-central1.run.app";
 const SERVER_PORT = 8080;
 
 # server variables
@@ -9,6 +9,7 @@ var players = {}
 # client variables
 
 func _ready():
+	print("ready")
 	if DisplayServer.get_name() == "headless" or OS.has_feature("dedicated_server"):
 		create_server()
 
