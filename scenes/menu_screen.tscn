@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3v78co1qtdo1"]
+[gd_scene load_steps=4 format=3 uid="uid://b3v78co1qtdo1"]
 
-[ext_resource type="PackedScene" uid="uid://1splx5d1r2s2" path="res://hex_button.tscn" id="1_b5e1w"]
-[ext_resource type="Script" path="res://menu_background.gd" id="1_n54ve"]
-[ext_resource type="Script" path="res://local_multiplayer_button.gd" id="3_8sose"]
-[ext_resource type="Script" path="res://host_online_multiplayer_button.gd" id="4_fv26w"]
+[ext_resource type="Script" path="res://scripts/menu_background.gd" id="1_n54ve"]
+[ext_resource type="Script" path="res://scripts/local_multiplayer_button.gd" id="3_8sose"]
+[ext_resource type="Script" path="res://scripts/host_online_multiplayer_button.gd" id="4_fv26w"]
 
 [node name="MenuScreen" type="Node2D"]
 
@@ -15,9 +14,6 @@ polygon = PackedVector2Array(-288, -163, -289, 161, 287, 161, 287, -165)
 
 [node name="Background" type="Node2D" parent="."]
 script = ExtResource("1_n54ve")
-
-[node name="HexButton" parent="." instance=ExtResource("1_b5e1w")]
-visible = false
 
 [node name="vsAI" type="Button" parent="."]
 offset_left = 488.0

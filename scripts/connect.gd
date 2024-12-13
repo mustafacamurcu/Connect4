@@ -1,6 +1,7 @@
 extends Node
 
-const SERVER_URL = "wss://connect4-956952065457.us-central1.run.app";
+# const SERVER_URL = "wss://connect4-956952065457.us-central1.run.app";
+const SERVER_URL = "ws://localhost:8080";
 const SERVER_PORT = 8080;
 
 # server variables

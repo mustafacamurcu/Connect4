@@ -1,28 +1,29 @@
 extends Node2D
 
-const MENU = preload("res://menu_screen.tscn")
-const GAME = preload("res://game.tscn")
-@onready var audio_stream_player = $AudioStreamPlayer
+const MENU = preload("res://scenes/menu_screen.tscn")
+const GAME = preload("res://scenes/game.tscn")
+const LOBBY = preload("res://scenes/lobby.tscn")
 
 var menu
 var game
+var lobby
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menu = MENU.instantiate()
+	lobby = LOBBY.instantiate()
+
 	add_child(menu)
+	add_child(lobby)
+
+	lobby.hide()
 
 	SignalBus.local_multiplayer_pressed.connect(_on_local_multiplayer_pressed)
-	SignalBus.host_online_multiplayer_pressed.connect(_on_host_online_multiplayer_pressed)
+	SignalBus.online_multiplayer_pressed.connect(_on_online_multiplayer_pressed)
 	SignalBus.load_game.connect(_on_load_game)
 	SignalBus.quit_pressed.connect(_on_quit_pressed)
 	SignalBus.options_pressed.connect(_on_options_pressed)
 	SignalBus.escape_pressed.connect(_on_escape_pressed)
-	
-	SignalBus.bgm_toggled.connect(_on_bgm_toggled)
-	
-func _on_bgm_toggled(on):
-	audio_stream_player.stream_paused = not on
 
 func _on_local_multiplayer_pressed():
 	menu.hide()
@@ -31,8 +32,9 @@ func _on_local_multiplayer_pressed():
 	game = GAME.instantiate()
 	add_child(game)
 
-func _on_host_online_multiplayer_pressed():
-	Connect.join_server()
+func _on_online_multiplayer_pressed():
+	menu.hide()
+	lobby.show()
 
 func _on_load_game():
 	menu.hide()

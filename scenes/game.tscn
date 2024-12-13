@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfgc3f5ca8mte"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_l5wde"]
-[ext_resource type="Script" path="res://camera.gd" id="2_m8lag"]
-[ext_resource type="Script" path="res://RestartButton.gd" id="3_wb2t0"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_l5wde"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_m8lag"]
+[ext_resource type="Script" path="res://scripts/RestartButton.gd" id="3_wb2t0"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l5wde")

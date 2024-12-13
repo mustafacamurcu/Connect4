@@ -1,7 +1,7 @@
 class_name Game
 extends Node2D
 
-const HEXAGON = preload("res://hexagon.tscn")
+const HEXAGON = preload("res://scenes/hexagon.tscn")
 
 @onready var camera_2d = $Camera2D
 @onready var hex_container = $HexContainer

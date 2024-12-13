@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="Connect4"
-run/main_scene="res://scene_manager.tscn"
+run/main_scene="res://scenes/scene_manager.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+config/stretch/mode="canvas_items"
+config/size/resizable=true
 
 [autoload]
 
-Constants="*res://constants.gd"
-SignalBus="*res://signal_bus.gd"
-Connect="*res://connect.gd"
+Constants="*res://scripts/constants.gd"
+SignalBus="*res://scripts/signal_bus.gd"
+Connect="*res://scripts/connect.gd"
 
 [debug]
 
@@ -28,7 +30,7 @@ file_logging/enable_file_logging=true
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [input]
 

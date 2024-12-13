@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://gbehs5dyye5x"]
+
+[ext_resource type="Script" path="res://scripts/menu_background.gd" id="1_lue54"]
+[ext_resource type="Script" path="res://scripts/local_multiplayer_button.gd" id="2_h6gje"]
+
+[node name="Lobby" type="Node2D"]
+
+[node name="BackgroundColor" type="Polygon2D" parent="."]
+rotation = 3.14159
+scale = Vector2(20.9342, -27.9303)
+color = Color(0.133333, 0.0470588, 0.0627451, 1)
+polygon = PackedVector2Array(-288, -163, -289, 161, 287, 161, 287, -165)
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_lue54")
+
+[node name="HostGame" type="Button" parent="."]
+offset_left = 413.0
+offset_top = 295.0
+offset_right = 1251.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 100
+text = "Host Game"
+script = ExtResource("2_h6gje")

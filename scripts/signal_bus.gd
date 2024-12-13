@@ -20,10 +20,9 @@ signal joined_to_server
 
 # UI Events
 signal local_multiplayer_pressed
-signal host_online_multiplayer_pressed
+signal online_multiplayer_pressed
 signal restart_pressed
 
 signal quit_pressed
 signal options_pressed
 signal escape_pressed
-signal bgm_toggled
