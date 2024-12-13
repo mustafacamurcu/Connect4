@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3v78co1qtdo1"]
+
+[ext_resource type="Script" path="res://scripts/menu_background.gd" id="1_36sw6"]
+[ext_resource type="Script" path="res://scripts/menu_button.gd" id="2_sm4ix"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_feosl"]
+font_size = 200
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_36sw6")
+
+[node name="Connect6" type="Label" parent="."]
+offset_left = 422.0
+offset_top = 31.0
+offset_right = 1384.0
+offset_bottom = 304.0
+text = "Connect 6"
+label_settings = SubResource("LabelSettings_feosl")
+
+[node name="LocalMultiplayer" type="Button" parent="."]
+offset_left = 731.0
+offset_top = 402.0
+offset_right = 1118.0
+offset_bottom = 547.0
+theme_override_font_sizes/font_size = 100
+text = "Hotseat"
+script = ExtResource("2_sm4ix")
+signal_name = "local_multiplayer"
+
+[node name="OnlineMultiplayer" type="Button" parent="."]
+offset_left = 760.0
+offset_top = 595.0
+offset_right = 1087.0
+offset_bottom = 740.0
+theme_override_font_sizes/font_size = 100
+text = "Online"
+script = ExtResource("2_sm4ix")
+signal_name = "online_multiplayer"

@@ -2,16 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_l5wde"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_m8lag"]
-[ext_resource type="Script" path="res://scripts/RestartButton.gd" id="3_wb2t0"]
+[ext_resource type="Script" path="res://scripts/menu_button.gd" id="3_1snvn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l5wde")
-
-[node name="Background" type="Polygon2D" parent="."]
-position = Vector2(2539.69, 0)
-scale = Vector2(-69.824, 73.7742)
-color = Color(0.133333, 0.0470588, 0.0627451, 1)
-polygon = PackedVector2Array(-288, -163, -289, 161, 287, 161, 287, -4.59656, 287, -165, 0.415649, -164.003)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_m8lag")
@@ -53,7 +47,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "Restart
 "
-script = ExtResource("3_wb2t0")
+script = ExtResource("3_1snvn")
+signal_name = "restart"
 
 [node name="LobbyCode" type="Label" parent="CanvasLayer"]
 offset_left = 30.0

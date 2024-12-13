@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://gbehs5dyye5x"]
+
+[ext_resource type="Script" path="res://scripts/menu_background.gd" id="1_310dn"]
+[ext_resource type="Script" path="res://scenes/multiplayer_menu.gd" id="1_ywsr5"]
+[ext_resource type="Script" path="res://scripts/menu_button.gd" id="2_iyixf"]
+
+[node name="Multiplayer" type="Node2D"]
+script = ExtResource("1_ywsr5")
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_310dn")
+
+[node name="HostGame" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 476.0
+offset_right = 787.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 100
+text = "Create a game"
+script = ExtResource("2_iyixf")
+signal_name = "host_game"
+
+[node name="JoinGame" type="Button" parent="."]
+offset_left = 1188.0
+offset_top = 875.0
+offset_right = 1856.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 100
+text = "Join game"
+script = ExtResource("2_iyixf")
+signal_name = "join_game"
+
+[node name="GameList" type="ItemList" parent="."]
+offset_left = 1374.0
+offset_top = 336.0
+offset_right = 1414.0
+offset_bottom = 376.0
+theme_override_font_sizes/font_size = 100

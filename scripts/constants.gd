@@ -29,6 +29,8 @@ static var colors = {
 	Type.Unavailable: GRAY,
 }
 
+static var DISPLAY_NAMES = ['Pikachu', 'Charmander', 'Squirtle', 'Bulbasaur', 'Meowth', 'Onyx', 'Togepi', 'Rattata']
+
 
 func create_hexagon(edge_size) -> Polygon2D:
 	var hex = Polygon2D.new()

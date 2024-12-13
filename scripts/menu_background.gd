@@ -3,6 +3,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scale.x = 2.5
+	scale.y = 2.5
 	for i in range(-20, 20):
 		for j in range(-20, 10):
 			var hex = Constants.create_hexagon(Constants.HEXAGON_EDGE)
