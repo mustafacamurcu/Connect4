@@ -34,13 +34,9 @@ func _ready():
 	SignalBus.options_pressed.connect(_on_options_pressed)
 	SignalBus.escape_pressed.connect(_on_escape_pressed)
 
-	# Lobby Menu Buttons
-	SignalBus.lobby_selected.connect(_on_lobby_selected)
-
 	# Server Commands
 	SignalBus.joined_lobby.connect(_on_joined_lobby)
 	SignalBus.connected_to_server.connect(_on_connected_to_server)
-
 
 func hide_menus():
 	for menu in menus:
@@ -49,16 +45,13 @@ func hide_menus():
 func _on_host_game_pressed():
 	Connect.create_game()
 
-func _on_lobby_selected(lobby_id: int):
-	lobby = lobby_id
-
 func _on_joined_lobby(_lobby_data: Dictionary):
 	hide_menus()
 	lobby_menu.show()
 
 func _on_join_game_pressed():
-	if lobby > 0:
-		Connect.join_game(lobby)
+	if SignalBus.selected_lobby_id > 0:
+		Connect.join_game(SignalBus.selected_lobby_id)
 	else:
 		print("no lobby selected")
 
@@ -91,5 +84,12 @@ func _on_options_pressed():
 	pass
 
 func _on_escape_pressed():
-	game.queue_free()
+	print('escape_pressed')
+	if is_instance_valid(game):
+		game.queue_free()
+	hide_menus()
 	main_menu.show()
+
+func _unhandled_key_input(event):
+	if event.is_action('escape'):
+		SignalBus.escape_pressed.emit()

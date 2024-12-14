@@ -37,10 +37,10 @@ func set_display_name(display_name: String):
 	_set_display_name.rpc_id(1, display_name)
 
 func create_game():
-	_create_game.rpc_id(1)
+	_create_game.rpc_id(1, SignalBus.display_name)
 
 func join_game(game_id: int):
-	_join_game.rpc_id(1, game_id)
+	_join_game.rpc_id(1, game_id, SignalBus.display_name)
 
 func get_games_list():
 	_get_games_list.rpc_id(1);
@@ -82,11 +82,11 @@ func _set_display_name(display_name: String):
 	peers[peer_id].display_name = display_name
 
 @rpc("any_peer", "reliable")
-func _create_game():
+func _create_game(display_name: String):
 	if _not_server(): return
 	# get peer_id and display name for host
 	var peer_id = multiplayer.get_remote_sender_id()
-	var display_name = peers[peer_id].display_name
+	peers[peer_id].display_name = display_name
 	# create game, use peer_id of host as game_id
 	var game = GameData.new()
 	games[peer_id] = game
@@ -96,10 +96,11 @@ func _create_game():
 	_add_player_to_game(peer_id, game.game_id)
 
 @rpc("any_peer", "reliable")
-func _join_game(game_id: int):
+func _join_game(game_id: int, display_name: String):
 	if _not_server(): return
 	# get peer_id and game
 	var peer_id = multiplayer.get_remote_sender_id()
+	peers[peer_id].display_name = display_name
 	_add_player_to_game(peer_id, game_id)
 
 @rpc("any_peer", "reliable")
@@ -118,11 +119,12 @@ func _add_player_to_game(peer_id: int, game_id: int):
 	var game = games[game_id]
 	game.players[peer_id] = player
 	peers[peer_id].game = game
-	# notify other players
-	for other in game.players.keys():
-		_player_added_to_lobby.rpc_id(other, peer_id, display_name)
+	# notify all players
+	for all in game.players.keys():
+		_player_added_to_lobby.rpc_id(all, peer_id, display_name)
 	# tell player about the game
 	_joined_lobby.rpc_id(peer_id, game.to_dict())
+	_games_list_updated.rpc(games_list())
 
 func _not_server():
 	if not multiplayer.is_server():
@@ -153,15 +155,17 @@ func _on_peer_disconnected(peer_id):
 	if not multiplayer.is_server():
 		return
 	# remove player from game. If game is empty now, remove it.
-	var game = peers[peer_id].game
-	game.players.erase(peer_id)
-	var player_count = game.players.size()
-	# if the game is now empty, remove it.
-	if player_count == 0:
-		games.erase(game.game_id)
-		_player_left.rpc(peer_id)
-	# notify remaining players.
-	for player in game.players.keys:
-		_player_left.rpc_id(player, peer_id)
+	if "game" in peers[peer_id]:
+		var game = peers[peer_id].game
+		game.players.erase(peer_id)
+		var player_count = game.players.size()
+		# if the game is now empty, remove it.
+		if player_count == 0:
+			games.erase(game.game_id)
+			_player_left.rpc(peer_id)
+		# notify remaining players.
+		for player in game.players.keys():
+			_player_left.rpc_id(player, peer_id)
+		_games_list_updated.rpc(games_list())
 	# remove peer from peers
 	peers.erase(peer_id)

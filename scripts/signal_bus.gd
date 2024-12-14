@@ -1,5 +1,9 @@
 extends Node
 
+# Global settings
+var selected_lobby_id: int
+var display_name: String
+
 # Input Events
 signal clicked_on(hex: String)
 signal hovered_in(hex: Hexagon)

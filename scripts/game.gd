@@ -40,10 +40,6 @@ func generate_lobby_code():
 	lobby_code_label.text = "lobby code: " + str(lobby_code)
 	return lobby_code
 
-func _unhandled_key_input(event):
-	if event.is_action('escape'):
-		SignalBus.escape_pressed.emit()
-
 func is_player_controlled(hex: Hexagon):
 	return hex.type == Constants.Type.Player1 or hex.type == Constants.Type.Player2
 
